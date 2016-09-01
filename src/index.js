@@ -34,10 +34,14 @@ const repositories = [
     ["mozilla", "addons-server"],
     ["mozilla", "amo-validator"],
     ["mozilla", "dispensary"],
-    ["mozilla", "jpm"],
-    ["mozilla", "jpm-core"],
     ["mozilla", "sign-addon"],
     ["mozilla", "web-ext"],
+    ["mozilla-jetpack", "jetpack-id"],
+    ["mozilla-jetpack", "jetpack-validation"],
+    ["mozilla-jetpack", "jpm"],
+    ["mozilla-jetpack", "jpm-core"],
+    ["mozilla-jetpack", "jpm-mobile"],
+    ["mozilla-jetpack", "node-fx-runner"],
 ];
 
 bluebird.promisifyAll(redis.RedisClient.prototype);
