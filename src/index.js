@@ -9,6 +9,7 @@ const developers = [
     "andymckay",
     "atsay",
     "brampitoyo",
+    "bqbn",
     "designakt",
     "diox",
     "EnTeQuAk",
