@@ -14,6 +14,8 @@
   "author": "Andreas Wagner",
   "license": "MPL-2.0",
   "dependencies": {
+    "babel-compile": "^2.0.0",
+    "babel-preset-taskcluster": "^3.0.0",
     "bluebird": "^3.4.6",
     "dedent": "^0.6.0",
     "github-api": "^2.3.0",
@@ -25,9 +27,6 @@
     "node": "6.6.0"
   },
   "devDependencies": {
-    "babel-compile": "^2.0.0",
-    "babel-preset-taskcluster": "^3.0.0",
-    "babel-runtime": "^6.11.6",
     "eslint": "^3.6.1",
     "eslint-config-standard": "^6.1.0",
     "eslint-plugin-promise": "^2.0.1",
