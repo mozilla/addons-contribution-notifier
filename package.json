@@ -8,7 +8,7 @@
     "test": "eslint src",
     "start": "node lib/index.js",
     "compile": "babel-compile -p taskcluster src:lib",
-    "preinstall": "npm run compile",
+    "postinstall": "npm run compile",
     "dev": "npm run compile && npm run start"
   },
   "author": "Andreas Wagner",
