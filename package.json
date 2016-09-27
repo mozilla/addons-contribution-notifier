@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "lib/index.js",
+  "private": true,
   "scripts": {
     "test": "eslint src",
     "start": "node lib/index.js",
@@ -13,7 +14,7 @@
   "author": "Andreas Wagner",
   "license": "MPL-2.0",
   "dependencies": {
-    "bluebird": "^3.4.3",
+    "bluebird": "^3.4.6",
     "dedent": "^0.6.0",
     "github-api": "^2.3.0",
     "postmark": "^1.2.1",
@@ -21,15 +22,14 @@
     "source-map-support": "^0.4.2"
   },
   "engines": {
-    "node": "6.5.0"
+    "node": "6.6.0"
   },
   "devDependencies": {
     "babel-compile": "^2.0.0",
-    "babel-eslint": "^6.1.2",
     "babel-preset-taskcluster": "^3.0.0",
     "babel-runtime": "^6.11.6",
-    "eslint": "^3.4.0",
-    "eslint-config-standard": "^6.0.0",
+    "eslint": "^3.6.1",
+    "eslint-config-standard": "^6.1.0",
     "eslint-plugin-promise": "^2.0.1",
     "eslint-plugin-standard": "^2.0.0"
   }
