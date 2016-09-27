@@ -70,7 +70,7 @@ async function checkRepo(username, repositoryname, lastCheck, recipients) {
                 console.log(`${username}/${repositoryname}: PR ${pr.number} by ${pr.user.login} was merged on ${pr.merged_at}.`);
                 let date = new Date(pr.merged_at).toUTCString();
                 email.send(recipients,
-                    "[Add-ons] New Contribution",
+                    `[Add-ons] New Contribution by ${pr.user.login}`,
                     /* Do not remove the newlines */
                     dedent`Hello!
 
@@ -79,7 +79,7 @@ async function checkRepo(username, repositoryname, lastCheck, recipients) {
                     Pull request https://github.com/${username}/${repositoryname}/pull/${pr.number} by https://github.com/${pr.user.login} has been merged on ${date}.
 
                     This is an automated message. If something is wrong, please don't shoot the messenger! File an issue at https://github.com/mozilla/addons-contribution-notifier
-  
+
                     -- The Add-ons Contribution Bot`
                 );
             }
