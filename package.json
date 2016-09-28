@@ -9,7 +9,8 @@
     "start": "node lib/index.js",
     "compile": "babel-compile -p taskcluster src:lib",
     "postinstall": "npm run compile",
-    "dev": "npm run compile && npm run start"
+    "dev": "npm run compile && npm run start",
+    "nsp-check": "nsp check -o summary"
   },
   "author": "Andreas Wagner",
   "license": "MPL-2.0",
@@ -30,6 +31,7 @@
     "eslint": "^3.6.1",
     "eslint-config-standard": "^6.1.0",
     "eslint-plugin-promise": "^2.0.1",
-    "eslint-plugin-standard": "^2.0.0"
+    "eslint-plugin-standard": "^2.0.0",
+    "nsp": "^2.6.1"
   }
 }
