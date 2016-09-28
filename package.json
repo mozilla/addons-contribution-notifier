@@ -19,20 +19,18 @@
     "babel-preset-taskcluster": "^3.0.0",
     "bluebird": "^3.4.6",
     "dedent": "^0.6.0",
+    "eslint": "^3.6.1",
+    "eslint-config-standard": "^6.1.0",
+    "eslint-plugin-promise": "^2.0.1",
+    "eslint-plugin-standard": "^2.0.0",
     "github-api": "^2.3.0",
+    "nsp": "^2.6.1",
     "postmark": "^1.2.1",
     "redis": "^2.6.2",
     "source-map-support": "^0.4.2"
   },
   "engines": {
-    "node": "6.6.0",
+    "node": "6.7.0",
     "npm": "^3.10.8"
-  },
-  "devDependencies": {
-    "eslint": "^3.6.1",
-    "eslint-config-standard": "^6.1.0",
-    "eslint-plugin-promise": "^2.0.1",
-    "eslint-plugin-standard": "^2.0.0",
-    "nsp": "^2.6.1"
   }
 }
