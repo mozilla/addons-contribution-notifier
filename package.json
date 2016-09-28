@@ -25,7 +25,8 @@
     "source-map-support": "^0.4.2"
   },
   "engines": {
-    "node": "6.6.0"
+    "node": "6.6.0",
+    "npm": "^3.10.8"
   },
   "devDependencies": {
     "eslint": "^3.6.1",
