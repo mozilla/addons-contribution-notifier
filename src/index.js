@@ -27,6 +27,7 @@ const developers = [
     "rpl",
     "tofumatt",
     "wagnerand",
+    "wbamberg",
 ];
 
 const repositories = [
