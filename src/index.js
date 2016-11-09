@@ -24,7 +24,7 @@ const developers = [
     "kumar303",
     "mstriemer",
     "muffinresearch",
-    "osmose",
+    "Osmose",
     "pdehaan",
     "rpl",
     "tofumatt",
