@@ -16,6 +16,7 @@ const developers = [
     "EnTeQuAk",
     "eviljeff",
     "greenkeeperio-bot",
+    "greenkeeper[bot]",
     "groovecoder",
     "jasonthomas",
     "jvillalobos",
