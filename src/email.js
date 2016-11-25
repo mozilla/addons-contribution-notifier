@@ -7,7 +7,7 @@ const postmark = require("postmark");
 const FROM = "Add-ons Contributions <awagner+addons-contributions@mozilla.com>";
 var client = new postmark.Client(process.env.POSTMARK_API_TOKEN);
 
-function send(recipients, subject, body) {
+function send(recipients, subject, body, callback) {
     let addresses = recipients.map(recipient => {
         if (recipient.email) {
             return `"${recipient.name || recipient.email}" <${recipient.email}>`;
@@ -23,7 +23,7 @@ function send(recipients, subject, body) {
         To: addresses.join(", "),
         Subject: subject,
         TextBody: body
-    });
+    }, callback);
 }
 
 module.exports.send = send;

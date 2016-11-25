@@ -133,5 +133,13 @@ async function main() {
 
 main().then(null, err => {
     console.dir(err);
-    process.exit(1);
+    let errorRecipients = [{
+        email: "awagner@mozilla.com"
+    }];
+    email.send(errorRecipients, "Add-ons Contribution Notifier Error", err.stack, function(error) {
+        if (error) {
+            console.log(`!!! Cannot send error email: ${error}`);
+        }
+        process.exit(1);
+    });
 });
