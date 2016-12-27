@@ -79,7 +79,7 @@ async function checkRepo(username, repositoryname, lastCheck, recipients) {
                     /* Do not remove the newlines */
                     dedent`Hello!
 
-                    Let me tell you about a new code contribution to add-ons!
+                    A new code contribution to add-ons has been made!
 
                     Pull request https://github.com/${username}/${repositoryname}/pull/${pr.number} by https://github.com/${pr.user.login} has been merged on ${date}.
 
