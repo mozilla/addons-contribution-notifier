@@ -17,17 +17,17 @@
   "dependencies": {
     "babel-compile": "^2.0.0",
     "babel-preset-taskcluster": "^3.0.0",
-    "bluebird": "^3.4.6",
+    "bluebird": "^3.4.7",
     "dedent": "^0.6.0",
-    "eslint": "^3.7.1",
+    "eslint": "^3.12.2",
     "eslint-config-standard": "^6.2.0",
-    "eslint-plugin-promise": "^3.0.0",
+    "eslint-plugin-promise": "^3.4.0",
     "eslint-plugin-standard": "^2.0.1",
     "github-api": "^2.3.0",
     "nsp": "^2.6.2",
     "postmark": "^1.2.1",
     "redis": "^2.6.2",
-    "source-map-support": "^0.4.3"
+    "source-map-support": "^0.4.8"
   },
   "engines": {
     "node": "6.8.0",
