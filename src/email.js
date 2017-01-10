@@ -22,7 +22,7 @@ function send(recipients, subject, body, callback) {
         From: FROM,
         To: addresses.join(", "),
         Subject: subject,
-        TextBody: body
+        HtmlBody: body
     }, callback);
 }
 
