@@ -1,6 +1,6 @@
 const bluebird = require("bluebird");
-const dedent = require("dedent");
 const GitHub = require("github-api");
+const pug = require("pug");
 const redis = require("redis");
 const email = require("./email");
 require("source-map-support").install();
@@ -52,9 +52,20 @@ const repositories = [
     ["mozilla-jetpack", "node-fx-runner"],
 ];
 
+const attributes = [
+    "fantastic",
+    "great",
+    "marvelous",
+    "phenomenal",
+    "terrific",
+    "wonderful"
+];
+
 bluebird.promisifyAll(redis.RedisClient.prototype);
 bluebird.promisifyAll(redis.Multi.prototype);
+
 const gh = new GitHub();
+const compileEmail = pug.compileFile("src/email.pug");
 
 async function checkRepo(username, repositoryname, lastCheck, recipients) {
     if (!lastCheck) {
@@ -71,21 +82,20 @@ async function checkRepo(username, repositoryname, lastCheck, recipients) {
 
     await Promise.all(pullRequests.data.map(async pr => {
         if (!developers.includes(pr.user.login) && pr.merged_at) {
-            if (new Date(pr.merged_at).getTime() > lastCheck) {
+            let date = new Date(pr.merged_at);
+            if (date.getTime() > lastCheck) {
                 console.log(`${username}/${repositoryname}: PR ${pr.number} by ${pr.user.login} was merged on ${pr.merged_at}.`);
-                let date = new Date(pr.merged_at).toUTCString();
+                let renderedEmail = compileEmail({
+                    attribute: attributes[Math.floor(Math.random() * attributes.length)],
+                    organization: username,
+                    repo_name: repositoryname,
+                    pr_number: pr.number,
+                    pr_committer: pr.user.login,
+                    date: date.toUTCString()
+                });
                 email.send(recipients,
                     `[Add-ons] New Contribution by ${pr.user.login}`,
-                    /* Do not remove the newlines */
-                    dedent`Hello!
-
-                    A new code contribution to add-ons has been made!
-
-                    Pull request https://github.com/${username}/${repositoryname}/pull/${pr.number} by https://github.com/${pr.user.login} has been merged on ${date}.
-
-                    This is an automated message. If something is wrong, please don't shoot the messenger! File an issue at https://github.com/mozilla/addons-contribution-notifier
-
-                    -- The Add-ons Contribution Bot`
+                    renderedEmail
                 );
             }
         }
