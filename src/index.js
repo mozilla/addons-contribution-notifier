@@ -5,33 +5,10 @@ const redis = require("redis");
 const email = require("./email");
 require("source-map-support").install();
 
+// We still need this for bots and yourself...
 const developers = [
-    "andymckay",
-    "atsay",
-    "brampitoyo",
-    "bqbn",
-    "davehunt",
-    "designakt",
-    "diox",
-    "EnTeQuAk",
-    "eviljeff",
-    "greenkeeperio-bot",
     "greenkeeper[bot]",
-    "groovecoder",
-    "jasonthomas",
-    "jvillalobos",
-    "kmaglione",
-    "krupa",
-    "kumar303",
-    "mstriemer",
-    "muffinresearch",
-    "Osmose",
-    "pdehaan",
-    "rpl",
-    "tofumatt",
-    "tspurway",
     "wagnerand",
-    "wbamberg",
 ];
 
 const repositories = [
@@ -64,15 +41,15 @@ const attributes = [
 bluebird.promisifyAll(redis.RedisClient.prototype);
 bluebird.promisifyAll(redis.Multi.prototype);
 
-const gh = new GitHub();
+const gh = new GitHub(process.env.GITHUB_TOKEN);
 const compileEmail = pug.compileFile("src/email.pug");
 
-async function checkRepo(username, repositoryname, lastCheck, recipients) {
+async function checkRepo(orgname, repositoryname, lastCheck, recipients) {
     if (!lastCheck) {
         lastCheck = 0;
     }
 
-    let repository = gh.getRepo(username, repositoryname);
+    let repository = gh.getRepo(orgname, repositoryname);
 
     let pullRequests = await repository.listPullRequests({
         state: "closed",
@@ -84,19 +61,23 @@ async function checkRepo(username, repositoryname, lastCheck, recipients) {
         if (!developers.includes(pr.user.login) && pr.merged_at) {
             let date = new Date(pr.merged_at);
             if (date.getTime() > lastCheck) {
-                console.log(`${username}/${repositoryname}: PR ${pr.number} by ${pr.user.login} was merged on ${pr.merged_at}.`);
-                let renderedEmail = compileEmail({
-                    attribute: attributes[Math.floor(Math.random() * attributes.length)],
-                    organization: username,
-                    repo_name: repositoryname,
-                    pr_number: pr.number,
-                    pr_committer: pr.user.login,
-                    date: date.toUTCString()
-                });
-                email.send(recipients,
-                    `[Add-ons] New Contribution by ${pr.user.login}`,
-                    renderedEmail
-                );
+                let contributor = pr.user.login;
+                let isStaff = await gh.getOrganization("mozilla").isMember(contributor);
+                if (!isStaff) {
+                    console.log(`${orgname}/${repositoryname}: PR ${pr.number} by ${contributor} was merged on ${pr.merged_at}.`);
+                    let renderedEmail = compileEmail({
+                        attribute: attributes[Math.floor(Math.random() * attributes.length)],
+                        organization: orgname,
+                        repo_name: repositoryname,
+                        pr_number: pr.number,
+                        pr_committer: contributor,
+                        date: date.toUTCString()
+                    });
+                    email.send(recipients,
+                        `[Add-ons] New Contribution by ${contributor}`,
+                        renderedEmail
+                    );
+                }
             }
         }
     }));
