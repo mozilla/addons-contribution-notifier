@@ -41,7 +41,7 @@ const attributes = [
 bluebird.promisifyAll(redis.RedisClient.prototype);
 bluebird.promisifyAll(redis.Multi.prototype);
 
-const gh = new GitHub(process.env.GITHUB_TOKEN);
+const gh = new GitHub({token: process.env.GITHUB_TOKEN});
 const compileEmail = pug.compileFile("src/email.pug");
 
 async function checkRepo(orgname, repositoryname, lastCheck, recipients) {
