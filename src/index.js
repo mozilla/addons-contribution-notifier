@@ -8,6 +8,7 @@ require("source-map-support").install();
 // We still need this for bots and yourself...
 const developers = [
     "greenkeeper[bot]",
+    "greenkeeperio-bot",
     "pyup-bot",
     "wagnerand",
 ];
