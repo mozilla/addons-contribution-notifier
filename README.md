@@ -29,3 +29,8 @@ POSTMARK_SMTP_SERVER
 ```
 REDIS_URL
 ```
+
+* In order to check whether a contributor is a member of the _Mozilla_ organisation on GitHub, we need to do an API lookup from a user within that organisation. The token is stored in:
+```
+GITHUB_TOKEN
+```
