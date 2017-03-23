@@ -10,7 +10,7 @@ This script fetches GitHub pull requests from Mozilla add-ons repositories and s
 There is no interface to do that yet, please open a new issue.
 
 ### How to add a repository?
-Add your repository to the `repositories` array in [index.js](https://github.com/mozilla/addons-contribution-notifier/blob/master/src/index.js) and submit a pull request.
+Add your repository to the `repositories` array in [index.js](https://github.com/mozilla/addons-contribution-notifier/blob/master/index.js) and submit a pull request.
 
 ### Developer notes:
 This script lives on _Heroku_, so it expects a couple of environment variables to work correctly (or at all):

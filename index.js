@@ -3,7 +3,6 @@ const GitHub = require("github-api");
 const pug = require("pug");
 const redis = require("redis");
 const email = require("./email");
-require("source-map-support").install();
 
 // We still need this for bots and yourself...
 const developers = [
@@ -44,7 +43,7 @@ bluebird.promisifyAll(redis.RedisClient.prototype);
 bluebird.promisifyAll(redis.Multi.prototype);
 
 const gh = new GitHub({token: process.env.GITHUB_TOKEN});
-const compileEmail = pug.compileFile("src/email.pug");
+const compileEmail = pug.compileFile("email.pug");
 
 async function checkRepo(orgname, repositoryname, lastCheck, recipients) {
     if (!lastCheck) {

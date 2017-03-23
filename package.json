@@ -5,32 +5,27 @@
   "main": "lib/index.js",
   "private": true,
   "scripts": {
-    "test": "eslint src",
-    "start": "node lib/index.js",
-    "compile": "babel-compile -p taskcluster src:lib",
-    "postinstall": "npm run compile",
-    "dev": "npm run compile && npm run start",
+    "test": "eslint .",
+    "start": "node index.js",
+    "dev": "npm run start",
     "nsp-check": "nsp check -o summary"
   },
   "author": "Andreas Wagner",
   "license": "MPL-2.0",
   "dependencies": {
-    "babel-compile": "^2.0.0",
-    "babel-preset-taskcluster": "^3.0.0",
     "bluebird": "^3.4.7",
     "eslint": "^3.12.2",
-    "eslint-config-standard": "^6.2.0",
+    "eslint-config-standard": "^7.1.0",
     "eslint-plugin-promise": "^3.4.0",
     "eslint-plugin-standard": "^2.0.1",
     "github-api": "^3.0.0",
     "nsp": "^2.6.2",
     "postmark": "^1.2.1",
-    "pug": "^2.0.0-beta6",
-    "redis": "^2.6.2",
-    "source-map-support": "^0.4.8"
+    "pug": "^2.0.0-beta11",
+    "redis": "^2.6.2"
   },
   "engines": {
-    "node": "6.8.0",
-    "npm": "^3.10.8"
+    "node": "^7.7.4",
+    "npm": "^4.4.1"
   }
 }
