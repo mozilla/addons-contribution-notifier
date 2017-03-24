@@ -1,3 +1,5 @@
+[![dependencies Status](https://david-dm.org/mozilla/addons-contribution-notifier/status.svg)](https://david-dm.org/mozilla/addons-contribution-notifier)
+
 # Add-on contribution notifier
 
 We love contributions to the Mozilla add-ons ecosystem! And we have a lot of projects people can contribute to.
