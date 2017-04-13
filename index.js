@@ -22,6 +22,7 @@ const repositories = [
     ["mozilla", "dispensary"],
     ["mozilla", "sign-addon"],
     ["mozilla", "web-ext"],
+    ["mozilla", "webextension-polyfill"],
     ["mozilla-jetpack", "jetpack-id"],
     ["mozilla-jetpack", "jetpack-validation"],
     ["mozilla-jetpack", "jpm"],
