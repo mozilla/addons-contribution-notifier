@@ -17,13 +17,10 @@ Add your repository to the `repositories` array in [index.js](https://github.com
 ### Developer notes:
 This script lives on _Heroku_, so it expects a couple of environment variables to work correctly (or at all):
 
-* We use the [_Postmark_](https://postmarkapp.com/) service to send emails.
+* We use the [_SendGrid_](https://sendgrid.com/) service to send emails.
 
 ```
-POSTMARK_API_KEY
-POSTMARK_API_TOKEN
-POSTMARK_INBOUND_ADDRESS
-POSTMARK_SMTP_SERVER
+SENDGRID_API_KEY
 ```
 
 * We store some data like the recipients in redis. The path to the redis instance is expected to be in:

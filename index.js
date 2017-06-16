@@ -129,9 +129,9 @@ main().then(null, err => {
     let errorRecipients = [{
         email: "awagner@mozilla.com"
     }];
-    email.send(errorRecipients, "Add-ons Contribution Notifier Error", err.stack, function(error) {
+    email.send(errorRecipients, "Add-ons Contribution Notifier Error", err.stack, function(error, response) {
         if (error) {
-            console.log(`!!! Cannot send error email: ${error}`);
+            console.log(`!!! Cannot send error email: ${error}\n${response}`);
         }
         process.exit(1);
     });
