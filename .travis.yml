@@ -1,7 +1,7 @@
 sudo: false
 language: node_js
 node_js:
-  - "7"
+  - "8"
 before_script:
 # If this command fails and you can't fix it, file an issue and add an exception to .nsprc
   - npm run nsp-check
