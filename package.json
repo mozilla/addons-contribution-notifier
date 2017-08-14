@@ -14,20 +14,20 @@
   "license": "MPL-2.0",
   "dependencies": {
     "bluebird": "^3.5.0",
-    "eslint": "^4.0.0",
+    "eslint": "^4.4.1",
     "eslint-config-standard": "^10.2.1",
-    "eslint-plugin-import": "^2.3.0",
-    "eslint-plugin-node": "^5.0.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-node": "^5.1.1",
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^3.0.0",
     "github-api": "^3.0.0",
-    "nsp": "^2.6.3",
-    "pug": "^2.0.0-beta11",
-    "redis": "^2.7.1",
-    "sendgrid": "^5.1.1"
+    "nsp": "^2.7.0",
+    "pug": "^2.0.0-rc.3",
+    "redis": "^2.8.0",
+    "sendgrid": "^5.2.1"
   },
   "engines": {
-    "node": "^8.1.2",
+    "node": "^8.1.4",
     "npm": "^5.0.3"
   }
 }
