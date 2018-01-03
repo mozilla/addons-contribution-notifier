@@ -10,8 +10,7 @@ const developers = [
     "greenkeeperio-bot",
     "pyup-bot",
     "snyk-bot",
-    "wagnerand",
-    "willdurand"
+    "wagnerand"
 ];
 
 const repositories = [
