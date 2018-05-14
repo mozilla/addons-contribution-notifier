@@ -7,22 +7,20 @@
   "scripts": {
     "test": "eslint .",
     "start": "node index.js",
-    "dev": "npm run start",
-    "nsp-check": "nsp check -o summary"
+    "dev": "npm run start"
   },
   "author": "Andreas Wagner",
   "license": "MPL-2.0",
   "dependencies": {
     "bluebird": "^3.5.1",
-    "eslint": "^4.14.0",
+    "eslint": "^4.19.1",
     "eslint-config-standard": "^11.0.0",
-    "eslint-plugin-import": "^2.8.0",
-    "eslint-plugin-node": "^6.0.0",
-    "eslint-plugin-promise": "^3.6.0",
-    "eslint-plugin-standard": "^3.0.0",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.7.0",
+    "eslint-plugin-standard": "^3.1.0",
     "github-api": "^3.0.0",
-    "nsp": "^3.0.0",
-    "pug": "^2.0.0-rc.3",
+    "pug": "^2.0.3",
     "redis": "^2.8.0",
     "sendgrid": "^5.2.1"
   },
