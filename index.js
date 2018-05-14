@@ -9,10 +9,10 @@ const developers = [
     "greenkeeper[bot]",
     "greenkeeperio-bot",
     "pyup-bot",
+    "rebmullin",
     "snyk-bot",
     "wagnerand",
-    "rebmullin",
-    "willdurand"
+    "willdurand",
 ];
 
 const repositories = [
@@ -78,7 +78,7 @@ async function checkRepo(orgname, repositoryname, lastCheck, recipients) {
                         pr_committer: contributor,
                         date: date.toUTCString()
                     });
-                    email.send(recipients,
+                    await email.send(recipients,
                         `[Add-ons] New Contribution by ${contributor}`,
                         renderedEmail
                     );
@@ -127,15 +127,16 @@ async function main() {
     client.quit();
 }
 
-main().then(null, err => {
+main().catch(async err => {
     console.dir(err);
     let errorRecipients = [{
         email: "awagner@mozilla.com"
     }];
-    email.send(errorRecipients, "Add-ons Contribution Notifier Error", err.stack, function(error, response) {
-        if (error) {
-            console.log(`!!! Cannot send error email: ${error}\n${response}`);
-        }
+    try {
+        await email.send(errorRecipients, "Add-ons Contribution Notifier Error", err.stack);
+    } catch (error) {
+        console.error(`!!! Cannot send error email: ${error}`);
+    } finally {
         process.exit(1);
-    });
+    }
 });
