@@ -1,4 +1,4 @@
-const bluebird = require("bluebird");
+const {promisify} = require("util");
 const GitHub = require("github-api");
 const pug = require("pug");
 const redis = require("redis");
@@ -42,9 +42,6 @@ const attributes = [
     "terrific",
     "wonderful"
 ];
-
-bluebird.promisifyAll(redis.RedisClient.prototype);
-bluebird.promisifyAll(redis.Multi.prototype);
 
 const gh = new GitHub({token: process.env.GITHUB_TOKEN});
 const compileEmail = pug.compileFile("email.pug");
@@ -93,8 +90,10 @@ async function main() {
     let client = redis.createClient({
         url: process.env.REDIS_URL
     });
+    const dbGetAsync = promisify(client.get).bind(client);
+    const dbSetAsync = promisify(client.set).bind(client);
 
-    let lastCheck = await client.getAsync("lastCheck");
+    let lastCheck = await dbGetAsync("lastCheck");
     if (!lastCheck) {
         lastCheck = "{}";
     }
@@ -104,7 +103,7 @@ async function main() {
         throw new Error("Can't parse lastCheck! Exiting.");
     }
 
-    let recipients = await client.getAsync("recipients");
+    let recipients = await dbGetAsync("recipients");
     if (!recipients) {
         throw new Error("No recipients! Exiting.");
     }
@@ -123,7 +122,7 @@ async function main() {
         lastCheckRepo = await checkRepo(repo[0], repo[1], lastCheckRepo, recipients);
         lastCheck[repoString] = lastCheckRepo;
     }));
-    await client.setAsync("lastCheck", JSON.stringify(lastCheck));
+    await dbSetAsync("lastCheck", JSON.stringify(lastCheck));
     client.quit();
 }
 
