@@ -114,7 +114,7 @@ async function main() {
 
     const mongoClient = await MongoClient.connect(process.env.MONGODB_URI);
     const mongoDb = mongoClient.db(new URL(process.env.MONGODB_URI).pathname.slice(1));
-    const mongoCollection = mongoDb.collection("contributions-test");
+    const mongoCollection = mongoDb.collection("contributions");
 
     await Promise.all(repositories.map(async repo => {
         const repoString = `${repo[0]}_${repo[1]}`;
