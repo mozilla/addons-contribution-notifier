@@ -21,17 +21,10 @@ const repositories = [
     ["mozilla", "addons-frontend"],
     ["mozilla", "addons-linter"],
     ["mozilla", "addons-server"],
-    ["mozilla", "amo-validator"],
     ["mozilla", "dispensary"],
     ["mozilla", "sign-addon"],
     ["mozilla", "web-ext"],
     ["mozilla", "webextension-polyfill"],
-    ["mozilla-jetpack", "jetpack-id"],
-    ["mozilla-jetpack", "jetpack-validation"],
-    ["mozilla-jetpack", "jpm"],
-    ["mozilla-jetpack", "jpm-core"],
-    ["mozilla-jetpack", "jpm-mobile"],
-    ["mozilla-jetpack", "node-fx-runner"],
 ];
 
 const attributes = [
