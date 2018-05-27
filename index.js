@@ -9,10 +9,8 @@ const developers = [
     "greenkeeper[bot]",
     "greenkeeperio-bot",
     "pyup-bot",
-    "rebmullin",
     "snyk-bot",
     "wagnerand",
-    "willdurand",
 ];
 
 const repositories = [
