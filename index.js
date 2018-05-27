@@ -1,7 +1,10 @@
-const {promisify} = require("util");
+const { promisify } = require("util");
+
 const GitHub = require("github-api");
+const MongoClient = require("mongodb").MongoClient;
 const pug = require("pug");
 const redis = require("redis");
+
 const email = require("./email");
 
 // We still need this for bots and yourself...
@@ -37,7 +40,7 @@ const attributes = [
 const gh = new GitHub({token: process.env.GITHUB_TOKEN});
 const compileEmail = pug.compileFile("email.pug");
 
-async function checkRepo(orgname, repositoryname, lastCheck, recipients) {
+async function checkRepo(orgname, repositoryname, lastCheck, recipients, dbCollection) {
     if (!lastCheck) {
         lastCheck = 0;
     }
@@ -58,7 +61,12 @@ async function checkRepo(orgname, repositoryname, lastCheck, recipients) {
                 const isStaff = await gh.getOrganization("mozilla").isMember(contributor);
                 if (!isStaff) {
                     console.log(`${orgname}/${repositoryname}: PR ${pr.number} by ${contributor} was merged on ${pr.merged_at}.`);
-                    let renderedEmail = compileEmail({
+                    pr.created_at = new Date(pr.created_at);
+                    pr.updated_at = new Date(pr.updated_at);
+                    pr.closed_at = new Date(pr.closed_at);
+                    pr.merged_at = new Date(pr.merged_at);
+                    dbCollection.insert(pr);
+                    const renderedEmail = compileEmail({
                         attribute: attributes[Math.floor(Math.random() * attributes.length)],
                         organization: orgname,
                         repo_name: repositoryname,
