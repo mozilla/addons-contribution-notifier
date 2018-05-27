@@ -44,9 +44,9 @@ async function checkRepo(orgname, repositoryname, lastCheck, recipients) {
         lastCheck = 0;
     }
 
-    let repository = gh.getRepo(orgname, repositoryname);
+    const repository = gh.getRepo(orgname, repositoryname);
 
-    let pullRequests = await repository.listPullRequests({
+    const pullRequests = await repository.listPullRequests({
         state: "closed",
         sort: "updated",
         direction: "desc"
@@ -54,10 +54,10 @@ async function checkRepo(orgname, repositoryname, lastCheck, recipients) {
 
     await Promise.all(pullRequests.data.map(async pr => {
         if (!developers.includes(pr.user.login) && pr.merged_at) {
-            let date = new Date(pr.merged_at);
+            const date = new Date(pr.merged_at);
             if (date.getTime() > lastCheck) {
-                let contributor = pr.user.login;
-                let isStaff = await gh.getOrganization("mozilla").isMember(contributor);
+                const contributor = pr.user.login;
+                const isStaff = await gh.getOrganization("mozilla").isMember(contributor);
                 if (!isStaff) {
                     console.log(`${orgname}/${repositoryname}: PR ${pr.number} by ${contributor} was merged on ${pr.merged_at}.`);
                     let renderedEmail = compileEmail({
@@ -80,11 +80,11 @@ async function checkRepo(orgname, repositoryname, lastCheck, recipients) {
 }
 
 async function main() {
-    let client = redis.createClient({
+    const redisClient = redis.createClient({
         url: process.env.REDIS_URL
     });
-    const dbGetAsync = promisify(client.get).bind(client);
-    const dbSetAsync = promisify(client.set).bind(client);
+    const dbGetAsync = promisify(redisClient.get).bind(redisClient);
+    const dbSetAsync = promisify(redisClient.set).bind(redisClient);
 
     let lastCheck = await dbGetAsync("lastCheck");
     if (!lastCheck) {
@@ -106,22 +106,28 @@ async function main() {
         throw new Error("Can't parse recipients! Exiting.");
     }
 
+    const mongoClient = await MongoClient.connect(process.env.MONGODB_URI);
+    const mongoDb = mongoClient.db(new URL(process.env.MONGODB_URI).pathname.slice(1));
+    const mongoCollection = mongoDb.collection("contributions-test");
+
     await Promise.all(repositories.map(async repo => {
-        let repoString = `${repo[0]}_${repo[1]}`;
+        const repoString = `${repo[0]}_${repo[1]}`;
         let lastCheckRepo = lastCheck[repoString];
         if (!lastCheckRepo) {
             lastCheckRepo = 0;
         }
-        lastCheckRepo = await checkRepo(repo[0], repo[1], lastCheckRepo, recipients);
+        lastCheckRepo = await checkRepo(repo[0], repo[1], lastCheckRepo, recipients, mongoCollection);
         lastCheck[repoString] = lastCheckRepo;
     }));
     await dbSetAsync("lastCheck", JSON.stringify(lastCheck));
-    client.quit();
+
+    redisClient.quit();
+    mongoClient.close();
 }
 
 main().catch(async err => {
     console.dir(err);
-    let errorRecipients = [{
+    const errorRecipients = [{
         email: "awagner@mozilla.com"
     }];
     try {
