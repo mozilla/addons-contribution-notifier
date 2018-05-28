@@ -1,3 +1,4 @@
+const { URL } = require("url"); // Not needed in node10
 const { promisify } = require("util");
 
 const GitHub = require("github-api");
@@ -38,7 +39,7 @@ const attributes = [
 ];
 
 const gh = new GitHub({token: process.env.GITHUB_TOKEN});
-const compileEmail = pug.compileFile("email.pug");
+const compileEmail = pug.compileFile("new_contribution.pug");
 
 async function checkRepo(orgname, repositoryname, lastCheck, recipients, dbCollection) {
     if (!lastCheck) {
@@ -64,7 +65,7 @@ async function checkRepo(orgname, repositoryname, lastCheck, recipients, dbColle
                     pr.created_at = new Date(pr.created_at);
                     pr.updated_at = new Date(pr.updated_at);
                     pr.closed_at = new Date(pr.closed_at);
-                    pr.merged_at = new Date(pr.merged_at);
+                    pr.merged_at = date;
                     dbCollection.insert(pr);
                     const renderedEmail = compileEmail({
                         attribute: attributes[Math.floor(Math.random() * attributes.length)],
@@ -78,6 +79,10 @@ async function checkRepo(orgname, repositoryname, lastCheck, recipients, dbColle
                         `[Add-ons] New Contribution by ${contributor}`,
                         renderedEmail
                     );
+                } else {
+                    // Not great because parallelization can lead to
+                    // duplicates, but good enough for now.
+                    developers.push(pr.user.login);
                 }
             }
         }
