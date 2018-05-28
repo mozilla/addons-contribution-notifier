@@ -1,0 +1,18 @@
+doctype html
+html
+  head
+  body
+    h2 Add-ons Code Contributions Report for #{reportMonth}
+    if totalContributors > 0
+      h3 In #{reportMonth}, #{totalContributors} contributor(s) made #{totalContributions} code contribution(s).
+      table
+        tr
+          th Name
+          th Contributions
+        each entry in contributionList
+          tr
+            td #[a(href=`https://github.com/${entry._id}`) #{entry._id}]
+            td(style='text-align: right;') #{entry.count}
+    else
+      h3 No code contributions have been made in #{reportMonth}.
+    p -- #[a(href='https://github.com/mozilla/addons-contribution-notifier') The Add-ons Contribution Bot]
