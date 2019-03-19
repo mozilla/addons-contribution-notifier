@@ -22,6 +22,7 @@ const repositories = [
     ["mozilla", "addons"],
     ["mozilla", "addons-contribution-notifier"],
     ["mozilla", "addons-frontend"],
+    ["mozilla", "addons-code-manager"],
     ["mozilla", "addons-linter"],
     ["mozilla", "addons-server"],
     ["mozilla", "dispensary"],
