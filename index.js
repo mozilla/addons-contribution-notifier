@@ -12,6 +12,7 @@ const email = require("./email");
 const developers = [
     "greenkeeper[bot]",
     "greenkeeperio-bot",
+    "Mozilla-GitHub-Standards",
     "pyup-bot",
     "renovate[bot]",
     "snyk-bot",
@@ -20,9 +21,9 @@ const developers = [
 
 const repositories = [
     ["mozilla", "addons"],
+    ["mozilla", "addons-code-manager"],
     ["mozilla", "addons-contribution-notifier"],
     ["mozilla", "addons-frontend"],
-    ["mozilla", "addons-code-manager"],
     ["mozilla", "addons-linter"],
     ["mozilla", "addons-server"],
     ["mozilla", "dispensary"],
