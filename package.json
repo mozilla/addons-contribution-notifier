@@ -7,7 +7,9 @@
   "scripts": {
     "test": "eslint .",
     "start": "node index.js",
-    "dev": "npm run start"
+    "dev": "npm run start",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "author": "Andreas Wagner",
   "license": "MPL-2.0",
@@ -22,10 +24,12 @@
     "github-api": "^3.2.2",
     "mongodb": "^3.0.8",
     "pug": "^2.0.3",
-    "redis": "^2.8.0"
+    "redis": "^2.8.0",
+    "snyk": "^1.189.0"
   },
   "engines": {
     "node": ">=8.3.0",
     "npm": ">=5.0.0"
-  }
+  },
+  "snyk": true
 }
