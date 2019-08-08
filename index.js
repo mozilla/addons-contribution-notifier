@@ -30,6 +30,7 @@ const repositories = [
     ["mozilla", "sign-addon"],
     ["mozilla", "web-ext"],
     ["mozilla", "webextension-polyfill"],
+    ["mozilla", "extension-workshop"],
 ];
 
 const attributes = [
