@@ -14,20 +14,20 @@
   "author": "Andreas Wagner",
   "license": "MPL-2.0",
   "dependencies": {
-    "@sendgrid/mail": "^6.2.1",
-    "github-api": "^3.2.2",
-    "mongodb": "^3.0.8",
-    "pug": "^2.0.3",
-    "redis": "^2.8.0",
-    "snyk": "^1.213.0"
+    "@sendgrid/mail": "6.3.1",
+    "github-api": "3.2.2",
+    "mongodb": "3.1.4",
+    "pug": "2.0.3",
+    "redis": "2.8.0",
+    "snyk": "1.213.0"
   },
   "devDependencies": {
-    "eslint": "^5.15.1",
-    "eslint-config-standard": "^13.0.1",
-    "eslint-plugin-import": "^2.12.0",
-    "eslint-plugin-node": "^9.0.0",
-    "eslint-plugin-promise": "^4.0.0",
-    "eslint-plugin-standard": "^4.0.0"
+    "eslint": "5.15.1",
+    "eslint-config-standard": "13.0.1",
+    "eslint-plugin-import": "2.14.0",
+    "eslint-plugin-node": "9.0.0",
+    "eslint-plugin-promise": "4.0.0",
+    "eslint-plugin-standard": "4.0.0"
   },
   "engines": {
     "node": ">=8.3.0",
