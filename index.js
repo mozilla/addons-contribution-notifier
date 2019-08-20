@@ -66,10 +66,12 @@ async function checkRepo(orgname, repositoryname, lastCheck, recipients, dbColle
                 const isStaff = await gh.getOrganization("mozilla").isMember(contributor);
                 if (!isStaff) {
                     console.log(`${orgname}/${repositoryname}: PR ${pr.number} by ${contributor} was merged on ${pr.merged_at}.`);
+                    /* eslint-disable require-atomic-updates */
                     pr.created_at = new Date(pr.created_at);
                     pr.updated_at = new Date(pr.updated_at);
                     pr.closed_at = new Date(pr.closed_at);
                     pr.merged_at = date;
+                    /* eslint-enable require-atomic-updates */
                     dbCollection.insert(pr);
                     const renderedEmail = compileEmail({
                         attribute: attributes[Math.floor(Math.random() * attributes.length)],
@@ -131,8 +133,8 @@ async function main() {
         if (!lastCheckRepo) {
             lastCheckRepo = 0;
         }
-        lastCheckRepo = await checkRepo(repo[0], repo[1], lastCheckRepo, recipients, mongoCollection);
-        lastCheck[repoString] = lastCheckRepo;
+        // eslint-disable-next-line require-atomic-updates
+        lastCheck[repoString] = await checkRepo(repo[0], repo[1], lastCheckRepo, recipients, mongoCollection);
     }));
     await dbSetAsync("lastCheck", JSON.stringify(lastCheck));
 
