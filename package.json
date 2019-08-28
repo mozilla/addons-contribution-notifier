@@ -16,7 +16,7 @@
   "dependencies": {
     "@sendgrid/mail": "6.4.0",
     "github-api": "3.2.2",
-    "mongodb": "3.3.0",
+    "mongodb": "3.3.2",
     "pug": "2.0.4",
     "redis": "2.8.0",
     "snyk": "1.217.3"
