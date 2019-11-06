@@ -19,7 +19,7 @@
     "mongodb": "3.3.3",
     "pug": "2.0.4",
     "redis": "2.8.0",
-    "snyk": "1.240.1"
+    "snyk": "1.244.0"
   },
   "devDependencies": {
     "eslint": "6.6.0",
