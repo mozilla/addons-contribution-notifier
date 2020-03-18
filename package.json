@@ -12,7 +12,7 @@
   "author": "Andreas Wagner",
   "license": "MPL-2.0",
   "dependencies": {
-    "@sendgrid/mail": "6.5.4",
+    "@sendgrid/mail": "6.5.5",
     "github-api": "3.3.0",
     "mongodb": "3.5.5",
     "pug": "2.0.4",
