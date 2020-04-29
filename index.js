@@ -12,6 +12,7 @@ const email = require("./email");
 const developers = [
     "dependabot",
     "dependabot[bot]",
+    "dependabot-preview[bot]".
     "greenkeeper[bot]",
     "greenkeeperio-bot",
     "Mozilla-GitHub-Standards",
