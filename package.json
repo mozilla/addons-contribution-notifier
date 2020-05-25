@@ -15,7 +15,7 @@
     "@sendgrid/mail": "7.1.1",
     "github-api": "3.3.0",
     "mongodb": "3.5.7",
-    "pug": "2.0.4",
+    "pug": "3.0.0",
     "redis": "3.0.2"
   },
   "devDependencies": {
