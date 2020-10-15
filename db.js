@@ -51,11 +51,13 @@ class MongoDb {
         const queryOptions = { projection : { lastCheck : 1} };
 
         const lastCheckDoc = await metaCollection.findOne(dbQuery, queryOptions);
-        let lastCheck = lastCheckDoc.lastCheck;
-        if (!lastCheck) {
-            lastCheck = 0;
+        if (lastCheckDoc) {
+            const lastCheck = lastCheckDoc.lastCheck;
+            if (lastCheck) {
+                return lastCheck;
+            }
         }
-        return lastCheck;
+        return 0;
     }
 
     async setLastCheck(timestamp) {
@@ -73,11 +75,13 @@ class MongoDb {
         const queryOptions = { projection : { recipients : 1} };
 
         const recipientsDoc = await metaCollection.findOne(dbQuery, queryOptions);
-        const recipients = recipientsDoc.recipients;
-        if (!recipients) {
+        if (recipientsDoc) {
+            const recipients = recipientsDoc.recipients;
+            if (recipients) {
+                return recipients;
+            }
             throw new Error("No recipients! Exiting.");
         }
-        return recipients;
     }
 
     async insert(entry) {
