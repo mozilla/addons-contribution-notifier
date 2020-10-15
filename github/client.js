@@ -4,10 +4,6 @@
 
 const { GraphQLClient } = require("graphql-request");
 
-// Work around https://github.com/prisma-labs/graphql-request/issues/206
-const { Headers } = require("cross-fetch");
-global.Headers = global.Headers || Headers;
-
 const { addonsPullRequests } = require("./queries/addonsPullRequests");
 
 const ENDPOINT = "https://api.github.com/graphql";
