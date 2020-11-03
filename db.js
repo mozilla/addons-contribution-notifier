@@ -98,8 +98,8 @@ class MongoDb {
         const month = firstDay.toLocaleString("en-US", { month: "long", year: "numeric" });
     
         const result = contributionsCollection.aggregate([
-            { $match: { "merged_at":   {"$gte": firstDay, "$lt": lastDay }}},
-            { "$group": {_id: "$user.login", count: { $sum: 1 }}},
+            { $match: { "mergedAt":   {"$gte": firstDay.toISOString(), "$lt": lastDay.toISOString() }}},
+            { "$group": {_id: "$author.login", count: { $sum: 1 }}},
             { $sort: { "count": -1 }}
         ]);
         const contributions = await result.toArray();
