@@ -1,7 +1,7 @@
 /* This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
- 
+
 const pug = require("pug");
 
 const { MongoDbFactory } = require("../db");
@@ -30,7 +30,7 @@ class MonthlyEmail extends Email {
 
         const db = await MongoDbFactory.create();
         const recipients = await db.getEmailRecipients();
-    
+
         await super.send(recipients,
             `[Add-ons] Monthly Code Contributions Report ${this.month}`,
             renderedEmail

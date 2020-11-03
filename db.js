@@ -44,7 +44,7 @@ class MongoDb {
         dbEventEmitter.emit("close");
         await this.client.close();
     }
-    
+
     async getLastCheck() {
         const metaCollection = this.db.collection("metadata");
         const dbQuery = { lastCheck: { $exists : true } };
@@ -91,12 +91,12 @@ class MongoDb {
 
     async getMonthlyReportData() {
         const contributionsCollection = this.db.collection("contributions");
-    
+
         const current = new Date();
         const firstDay = new Date(current.getUTCFullYear(), current.getUTCMonth() - 1, 1);
         const lastDay = new Date(current.getUTCFullYear(), current.getUTCMonth(), 1);
         const month = firstDay.toLocaleString("en-US", { month: "long", year: "numeric" });
-    
+
         const result = contributionsCollection.aggregate([
             { $match: { "mergedAt":   {"$gte": firstDay.toISOString(), "$lt": lastDay.toISOString() }}},
             { "$group": {_id: "$author.login", count: { $sum: 1 }}},
