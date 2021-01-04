@@ -4,7 +4,9 @@
   "description": "",
   "private": true,
   "scripts": {
-    "test": "eslint .",
+    "eslint": "eslint .",
+    "test": "npm run eslint",
+    "test-ci": "npm run eslint",
     "start": "node index.js",
     "dev": "npm run start"
   },
