@@ -13,7 +13,7 @@
   "dependencies": {
     "@sendgrid/mail": "7.4.0",
     "graphql": "15.4.0",
-    "graphql-request": "3.3.0",
+    "graphql-request": "3.4.0",
     "mongodb": "3.6.3",
     "pug": "3.0.0"
   },
