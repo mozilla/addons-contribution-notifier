@@ -13,7 +13,7 @@
   "author": "Andreas Wagner",
   "license": "MPL-2.0",
   "dependencies": {
-    "@sendgrid/mail": "7.4.0",
+    "@sendgrid/mail": "7.4.1",
     "graphql": "15.4.0",
     "graphql-request": "3.4.0",
     "mongodb": "3.6.3",
