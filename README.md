@@ -18,7 +18,7 @@ This script sends a summary of the contributions for the previous month. It is s
 There is no interface to do that yet, please open a new issue.
 
 ### How to add a repository?
-Add your repository to the `REPOSITORIES` array in [repositories.js](https://github.com/mozilla/addons-contribution-notifier/blob/master/repositories.js) and submit a pull request.
+Add your repository to the `REPOSITORIES` array in [github/repositories.js](https://github.com/mozilla/addons-contribution-notifier/blob/master/github/repositories.js) and submit a pull request.
 
 ### Developer notes:
 This script lives on _Heroku_, so it expects a couple of environment variables to work correctly (or at all):
