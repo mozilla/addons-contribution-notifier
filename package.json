@@ -16,7 +16,7 @@
     "@sendgrid/mail": "7.4.2",
     "graphql": "15.5.0",
     "graphql-request": "3.4.0",
-    "mongodb": "3.6.3",
+    "mongodb": "3.6.4",
     "pug": "3.0.2"
   },
   "devDependencies": {
