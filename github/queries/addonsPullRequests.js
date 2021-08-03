@@ -6,11 +6,11 @@ const { gql } = require("graphql-request");
 
 const { REPOSITORIES } = require("../repositories");
 
+// The query string needs to be a single line, otherwise the Github API returns an empty response!
 const addonsPullRequests = gql`
 query getPulLRequestBySearchQuery {
     search(type: ISSUE,
-           query: "${REPOSITORIES.map((n) => `repo:${n}`).join("\n")}
-                   type:pr is:merged sort:updated-desc",
+           query: "${REPOSITORIES.map((n) => `repo:${n}`).join(" ")} -author:app/renovate -author:app/dependabot type:pr is:merged sort:updated-desc",
            last: 100) {
         nodes {
             ... on PullRequest {
