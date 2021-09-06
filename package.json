@@ -14,7 +14,7 @@
   "license": "MPL-2.0",
   "dependencies": {
     "@sendgrid/mail": "7.4.6",
-    "graphql": "15.5.1",
+    "graphql": "15.5.3",
     "graphql-request": "3.5.0",
     "mongodb": "3.6.11",
     "pug": "3.0.2"
