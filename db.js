@@ -32,7 +32,7 @@ class MongoDbFactory {
 class MongoDb {
 
     constructor() {
-        this.client = new MongoClient(process.env.MONGODB_URI, { useUnifiedTopology: true });
+        this.client = new MongoClient(process.env.MONGODB_URI);
     }
 
     async _connect() {
